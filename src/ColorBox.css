@@ -25,6 +25,7 @@
   line-height: 30px;
   color: white;
   border: none;
+  cursor: pointer;
   opacity: 0;
 }
 
