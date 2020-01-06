@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 // import DraggableColorList from "./DraggableColorList";
+import DraggableColorBox from "./DraggableColorBox";
 // import { arrayMove } from "react-sortable-hoc";
 import styles from "./styles/NewPaletteFormStyles";
 import seedColors from "./seedColors";
@@ -23,7 +24,7 @@ class NewPaletteForm extends Component {
     super(props);
     this.state = {
       open: true,
-      currentColor: 'teal',
+      currentColor: '#008080',
       colors: ['purple', '#E15764']
       // colors: seedColors[0].colors
     }
@@ -124,11 +125,9 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          <ul>
             {this.state.colors.map(color => (
-              <li style={{ backgroundColor: color }}>{color}</li>
+              <DraggableColorBox color={color} />
             ))}
-          </ul>
           {/* <DraggableColorList
             colors={colors}
             removeColor={this.removeColor}
