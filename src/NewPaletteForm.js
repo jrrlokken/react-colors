@@ -4,9 +4,11 @@ import { withStyles } from "@material-ui/core/styles";
 // import PaletteFormNav from "./PaletteFormNav";
 // import ColorPickerForm from "./ColorPickerForm";
 import Drawer from "@material-ui/core/Drawer";
+import Toolbar from '@material-ui/core/Toolbar';
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 // import DraggableColorList from "./DraggableColorList";
@@ -16,6 +18,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import styles from "./styles/NewPaletteFormStyles";
 import seedColors from "./seedColors";
 import { ChromePicker } from "react-color";
+import { CssBaseline, AppBar } from "@material-ui/core";
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -33,6 +36,7 @@ class NewPaletteForm extends Component {
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
     this.addNewColor = this.addNewColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -72,12 +76,52 @@ class NewPaletteForm extends Component {
     this.setState({ newName: e.target.value });
   }
 
+  handleSubmit() {
+    let newName='New Test Palette';
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, '-'),
+      colors: this.state.colors
+    }
+    this.props.savePalette(newPalette);
+    this.props.history.push('/');
+  }
+
   render() {
     const { classes, maxColors, palettes } = this.props;
     const { open, colors } = this.state;
     const paletteFull = colors.length >= maxColors;
     return (
       <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position='fixed'
+          color='default'
+          className={classNames(classes.appBar, {
+            [classes.appBarShift]: open
+          })}
+        >
+          <Toolbar disableGutters={!open}>
+            <IconButton
+              color='inherit'
+              aria-label='Open drawer'
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant='h6' color='inherit' noWrap>
+              PaletteSwatch
+            </Typography>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={this.handleSubmit}
+            >
+              Save Palette
+            </Button>
+          </Toolbar>
+        </AppBar>
         {/* <PaletteFormNav
           open={open}
           palettes={palettes}
