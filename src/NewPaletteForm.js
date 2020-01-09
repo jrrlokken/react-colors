@@ -1,22 +1,15 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-// import PaletteFormNav from "./PaletteFormNav";
-// import ColorPickerForm from "./ColorPickerForm";
+import PaletteFormNav from "./PaletteFormNav";
 import Drawer from "@material-ui/core/Drawer";
-import { CssBaseline, AppBar } from "@material-ui/core";
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import DraggableColorList from "./DraggableColorList";
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-// import styles from "./styles/NewPaletteFormStyles";
-import seedColors from "./seedColors";
 import { ChromePicker } from "react-color";
 import { arrayMove } from "react-sortable-hoc";
 
@@ -90,8 +83,7 @@ class NewPaletteForm extends Component {
       open: true,
       currentColor: 'teal',
       newColorName: '',
-      colors: this.props.palettes[0].colors,
-      newPaletteName: ''
+      colors: this.props.palettes[0].colors
       // colors: seedColors[0].colors
     }
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
@@ -114,11 +106,7 @@ class NewPaletteForm extends Component {
         ({ color }) => color !== this.state.currentColor
       )
     );
-    ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
-      this.props.palettes.every(
-        ({paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      )
-    );
+    
   }
 
   handleDrawerOpen = () => {
@@ -147,11 +135,10 @@ class NewPaletteForm extends Component {
     });
   }
 
-  handleSubmit() {
-    let newName= this.state.newPaletteName; 
+  handleSubmit(newPaletteName) {
     const newPalette = {
-      paletteName: newName,
-      id: newName.toLowerCase().replace(/ /g, '-'),
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
       colors: this.state.colors
     }
     this.props.savePalette(newPalette);
@@ -188,52 +175,14 @@ class NewPaletteForm extends Component {
 
     return (
       <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position='fixed'
-          color='default'
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: open
-          })}
-        >
-          <Toolbar disableGutters={!open}>
-            <IconButton
-              color='inherit'
-              aria-label='Open drawer'
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant='h6' color='inherit' noWrap>
-              <Link to='/'>PaletteSwatch</Link>
-            </Typography>
-            <ValidatorForm onSubmit={this.handleSubmit} ref='form'>
-              <TextValidator
-                value={this.state.newPaletteName}
-                label='Palette Name'
-                name='newPaletteName'
-                onChange={this.handleChange}
-                validators={['required', 'isPaletteNameUnique']}
-                errorMessages={['Palette name is required.', 'Palette name in use.']}
-              />
-              <Button
-                variant='contained'
-                color='primary'
-                type='submit'
-              >
-                Save Palette
-              </Button>
-            </ValidatorForm>
-            
-          </Toolbar>
-        </AppBar>
-        {/* <PaletteFormNav
+       
+        <PaletteFormNav
           open={open}
+          classes={classes}
           palettes={palettes}
           handleSubmit={this.handleSubmit}
           handleDrawerOpen={this.handleDrawerOpen}
-        /> */}
+        />
         <Drawer
           className={classes.drawer}
           variant='persistent'
@@ -243,66 +192,58 @@ class NewPaletteForm extends Component {
             paper: classes.drawerPaper
           }}
         >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
+        <div className={classes.drawerHeader}>
+          <IconButton onClick={this.handleDrawerClose}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+          <Typography variant='h4' gutterBottom>
+            Design Your Palette
+          </Typography>
+          <div className={classes.buttons}>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={this.clearColors}
+              className={classes.button}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              variant='contained'
+              className={classes.button}
+              color='primary'
+              onClick={this.addRandomColor}
+              disabled={paletteFull}
+            >
+              Random Color
+            </Button>
           </div>
-          <Divider />
-          <div className={classes.container}>
-            <Typography variant='h4' gutterBottom>
-              Design Your Palette
-            </Typography>
-            <div className={classes.buttons}>
-              <Button
-                variant='contained'
-                color='secondary'
-                onClick={this.clearColors}
-                className={classes.button}
-              >
-                Clear Palette
-              </Button>
-              <Button
-                variant='contained'
-                className={classes.button}
-                color='primary'
-                onClick={this.addRandomColor}
-                disabled={paletteFull}
-              >
-                Random Color
-              </Button>
-            </div>
-            <ChromePicker
-              color={this.state.currentColor}
-              onChangeComplete={this.updateCurrentColor}
+          <ChromePicker
+            color={this.state.currentColor}
+            onChangeComplete={this.updateCurrentColor}
+          />
+          <ValidatorForm onSubmit={this.addNewColor} ref='form'>
+            <TextValidator
+              value={this.state.newColorName}
+              name='newColorName'
+              onChange={this.handleChange}
+              validators={['required', 'isColorNameUnique', 'isColorUnique']}
+              errorMessages={['Color name is required', 'Color name must be unique', 'Color already used in this palette']}
             />
-            <ValidatorForm onSubmit={this.addNewColor} ref='form'>
-              <TextValidator
-                value={this.state.newColorName}
-                name='newColorName'
-                onChange={this.handleChange}
-                validators={['required', 'isColorNameUnique', 'isColorUnique']}
-                errorMessages={['Color name is required', 'Color name must be unique', 'Color already used in this palette']}
-              />
-              <Button
-                variant='contained'
-                type='submit'
-                color='default'
-                style={{ backgroundColor: paletteFull ? 'rgba(0,0,0,0.5)' : this.state.currentColor }}
-                className={classes.button}
-                disabled={paletteFull}
-              >
-              {paletteFull ? 'PALETTE FULL' : 'ADD COLOR'}
-              </Button>
-            </ValidatorForm>
-            
-            {/* <ColorPickerForm
-              paletteFull={paletteFull}
-              addNewColor={this.addNewColor}
-              colors={colors}
-            /> */}
-          </div>
+            <Button
+              variant='contained'
+              type='submit'
+              color='default'
+              disabled={paletteFull}
+              style={{ backgroundColor: paletteFull ? 'rgba(0,0,0,0.5)' : this.state.currentColor }}
+            >
+            {paletteFull ? 'PALETTE FULL' : 'ADD COLOR'}
+            </Button>
+          </ValidatorForm>
         </Drawer>
+
         <main
           className={classNames(classes.content, {
             [classes.contentShift]: open
