@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 // import PaletteFormNav from "./PaletteFormNav";
@@ -180,7 +181,7 @@ class NewPaletteForm extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant='h6' color='inherit' noWrap>
-              PaletteSwatch
+              <Link to='/'>PaletteSwatch</Link>
             </Typography>
             <ValidatorForm onSubmit={this.handleSubmit} ref='form'>
               <TextValidator
