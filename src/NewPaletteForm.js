@@ -90,7 +90,7 @@ class NewPaletteForm extends Component {
       open: true,
       currentColor: 'teal',
       newColorName: '',
-      colors: [{ color: 'blue', name: 'blue' }],
+      colors: this.props.palettes[0].colors,
       newPaletteName: ''
       // colors: seedColors[0].colors
     }
@@ -99,6 +99,8 @@ class NewPaletteForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.removeColor = this.removeColor.bind(this);
+    this.clearColors = this.clearColors.bind(this);
+    this.addRandomColor = this.addRandomColor.bind(this);
   }
 
   componentDidMount() {
@@ -167,10 +169,22 @@ class NewPaletteForm extends Component {
       colors: arrayMove(colors, oldIndex, newIndex),
     }));
   }
+
+  clearColors() {
+    this.setState({ colors: [] });
+  }
+
+  addRandomColor() {
+    const allColors = this.props.palettes.map(p => p.colors).flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[rand];
+    this.setState({ colors: [...this.state.colors, randomColor] });
+  }
+
   render() {
     const { classes, maxColors, palettes } = this.props;
     const { open, colors } = this.state;
-    // const paletteFull = colors.length >= maxColors;
+    const paletteFull = colors.length >= maxColors;
 
     return (
       <div className={classes.root}>
@@ -253,7 +267,7 @@ class NewPaletteForm extends Component {
                 className={classes.button}
                 color='primary'
                 onClick={this.addRandomColor}
-                // disabled={paletteFull}
+                disabled={paletteFull}
               >
                 Random Color
               </Button>
@@ -274,12 +288,11 @@ class NewPaletteForm extends Component {
                 variant='contained'
                 type='submit'
                 color='default'
-                style={{ backgroundColor: this.state.currentColor }}
-                // onClick = {this.addNewColor}
-                // className={classes.button}
-                // disabled={paletteFull}
+                style={{ backgroundColor: paletteFull ? 'rgba(0,0,0,0.5)' : this.state.currentColor }}
+                className={classes.button}
+                disabled={paletteFull}
               >
-                Add Color
+              {paletteFull ? 'PALETTE FULL' : 'ADD COLOR'}
               </Button>
             </ValidatorForm>
             
