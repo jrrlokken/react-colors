@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 // import PaletteFormNav from "./PaletteFormNav";
 // import ColorPickerForm from "./ColorPickerForm";
 import Drawer from "@material-ui/core/Drawer";
+import { CssBaseline, AppBar } from "@material-ui/core";
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -15,10 +16,69 @@ import Button from "@material-ui/core/Button";
 import DraggableColorBox from "./DraggableColorBox";
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 // import { arrayMove } from "react-sortable-hoc";
-import styles from "./styles/NewPaletteFormStyles";
+// import styles from "./styles/NewPaletteFormStyles";
 import seedColors from "./seedColors";
 import { ChromePicker } from "react-color";
-import { CssBaseline, AppBar } from "@material-ui/core";
+
+const drawerWidth = 400;
+
+const styles = theme => ({
+  root: {
+    display: "flex"
+  },
+  appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    })
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20
+  },
+  hide: {
+    display: "none"
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0
+  },
+  drawerPaper: {
+    width: drawerWidth
+  },
+  drawerHeader: {
+    display: "flex",
+    alignItems: "center",
+    padding: "0 8px",
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end"
+  },
+  content: {
+    flexGrow: 1,
+    height: "calc(100vh - 64px)",
+    padding: theme.spacing.unit * 3,
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    marginLeft: -drawerWidth
+  },
+  contentShift: {
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    }),
+    marginLeft: 0
+  }
+});
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -28,9 +88,10 @@ class NewPaletteForm extends Component {
     super(props);
     this.state = {
       open: true,
-      currentColor: '#008080',
-      newName: '',
-      colors: [{ color: 'blue', name: 'blue' }]
+      currentColor: 'teal',
+      newColorName: '',
+      colors: [{ color: 'blue', name: 'blue' }],
+      newPaletteName: ''
       // colors: seedColors[0].colors
     }
     this.updateCurrentColor = this.updateCurrentColor.bind(this);
@@ -50,6 +111,11 @@ class NewPaletteForm extends Component {
         ({ color }) => color !== this.state.currentColor
       )
     );
+    ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
+      this.props.palettes.every(
+        ({paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+      )
+    );
   }
 
   handleDrawerOpen = () => {
@@ -67,17 +133,19 @@ class NewPaletteForm extends Component {
   addNewColor() {
     const newColor = {
       color: this.state.currentColor,
-      name: this.state.newName
+      name: this.state.newColorName
     }
-    this.setState({ colors: [...this.state.colors, newColor], newName: '' });
+    this.setState({ colors: [...this.state.colors, newColor], newColorName: ''});
   }
 
   handleChange(e) {
-    this.setState({ newName: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   handleSubmit() {
-    let newName='New Test Palette';
+    let newName= this.state.newPaletteName; 
     const newPalette = {
       paletteName: newName,
       id: newName.toLowerCase().replace(/ /g, '-'),
@@ -90,7 +158,8 @@ class NewPaletteForm extends Component {
   render() {
     const { classes, maxColors, palettes } = this.props;
     const { open, colors } = this.state;
-    const paletteFull = colors.length >= maxColors;
+    // const paletteFull = colors.length >= maxColors;
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -113,13 +182,24 @@ class NewPaletteForm extends Component {
             <Typography variant='h6' color='inherit' noWrap>
               PaletteSwatch
             </Typography>
-            <Button
-              variant='contained'
-              color='primary'
-              onClick={this.handleSubmit}
-            >
-              Save Palette
-            </Button>
+            <ValidatorForm onSubmit={this.handleSubmit} ref='form'>
+              <TextValidator
+                value={this.state.newPaletteName}
+                label='Palette Name'
+                name='newPaletteName'
+                onChange={this.handleChange}
+                validators={['required', 'isPaletteNameUnique']}
+                errorMessages={['Palette name is required.', 'Palette name in use.']}
+              />
+              <Button
+                variant='contained'
+                color='primary'
+                type='submit'
+              >
+                Save Palette
+              </Button>
+            </ValidatorForm>
+            
           </Toolbar>
         </AppBar>
         {/* <PaletteFormNav
@@ -170,9 +250,10 @@ class NewPaletteForm extends Component {
               color={this.state.currentColor}
               onChangeComplete={this.updateCurrentColor}
             />
-            <ValidatorForm onSubmit={this.addNewColor}>
+            <ValidatorForm onSubmit={this.addNewColor} ref='form'>
               <TextValidator
-                value={this.state.newName}
+                value={this.state.newColorName}
+                name='newColorName'
                 onChange={this.handleChange}
                 validators={['required', 'isColorNameUnique', 'isColorUnique']}
                 errorMessages={['Color name is required', 'Color name must be unique', 'Color already used in this palette']}
@@ -182,6 +263,7 @@ class NewPaletteForm extends Component {
                 type='submit'
                 color='default'
                 style={{ backgroundColor: this.state.currentColor }}
+                // onClick = {this.addNewColor}
                 // className={classes.button}
                 // disabled={paletteFull}
               >
