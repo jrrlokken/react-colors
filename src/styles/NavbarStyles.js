@@ -22,6 +22,7 @@ export default {
   slider: {
     width: '340px',
     margin: '0 10px',
+    paddingLeft: '10px',
     display: 'inline-block',
     '& .rc-slider-track': {
       backgroundColor: 'transparent'
