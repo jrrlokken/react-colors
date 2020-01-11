@@ -45,7 +45,13 @@ export default {
     height: '30px',
     textAlign: 'center',
     lineHeight: '30px',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    [sizes.down('xs')]: {
+      width: '40px',
+      height: '20px',
+      fontSize: '0.7rem',
+      lineHeight: '1.25rem'
+    }
   },
   copyButton: {
     color: props =>

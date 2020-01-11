@@ -58,8 +58,12 @@ class PaletteFormNav extends Component {
             >
               <LaunchIcon />
             </IconButton>
-            <Typography variant='h6' color='inherit' noWrap>
-              Create A New Color Palette
+            <Typography
+              variant='h6'
+              color='inherit'
+              noWrap
+            >
+              Create A Color Palette
             </Typography> 
           </Toolbar>
           <div className={classes.navBtns}>

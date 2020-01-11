@@ -45,7 +45,7 @@ class Navbar extends Component {
           <Link to='/'>PaletteSwatch</Link>
         </div>
         {showSlider && (
-        <div className='slider-container'>
+        <div className={classes.sliderContainer}>
           <span>Lightness:</span>
           <div className={classes.slider}>
             <Slider
@@ -53,7 +53,7 @@ class Navbar extends Component {
               min={10}
               max={90}
               step={10}
-              marks={marks}
+              // marks={marks}
               onAfterChange={changeLevel}
             />
           </div>
