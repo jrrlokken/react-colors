@@ -19,9 +19,11 @@ export default {
     justifyContent: 'space-between',
     alignItems: 'center',
     color: 'white',
+    fontSize: '1.5rem',
     '& a': {
       color: 'white',
-      textDecoration: 'none'
+      textDecoration: 'none',
+      fontSize: '1.5rem'
     }
   },
   palettes: {
