@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 import classNames from "classnames";
 import { CssBaseline, AppBar, Button, Toolbar, Typography, IconButton, withStyles } from "@material-ui/core";
-import MenuIcon from '@material-ui/icons/Menu';
+// import PaletteTwoToneIcon from '@material-ui/icons/PaletteTwoTone';
+import LaunchIcon from '@material-ui/icons/Launch';
 import styles from './styles/PaletteFormNavStyles';
 
 class PaletteFormNav extends Component {
@@ -51,20 +52,22 @@ class PaletteFormNav extends Component {
               color='inherit'
               aria-label='Open drawer'
               onClick={this.props.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
+              className={classNames(classes.menuButton, {
+                [classes.hide]: open
+              })}
             >
-              <MenuIcon />
+              <LaunchIcon />
             </IconButton>
             <Typography variant='h6' color='inherit' noWrap>
-              Create A Palette
+              Create A New Color Palette
             </Typography> 
           </Toolbar>
           <div className={classes.navBtns}>
             
             <Link to='/'>
-              <Button variant='contained' color='secondary' className={classes.button}>GO BACK</Button>
+              <Button variant='outlined' color='primary' className={classes.button}>GO BACK</Button>
             </Link>
-            <Button variant='outlined' color='primary' onClick={this.showForm} className={classes.button}>
+            <Button variant='contained' color='secondary' onClick={this.showForm} className={classes.button}>
               Save
             </Button>
           </div>
