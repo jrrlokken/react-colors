@@ -9,13 +9,13 @@ function generatePalette(starterPalette) {
     emoji: starterPalette.emoji,
     colors: {}
   };
-  for(let level of levels) {
+  for (let level of levels) {
     newPalette.colors[level] = [];
   }
-  for(let color of starterPalette.colors) {
+  for (let color of starterPalette.colors) {
     // let scale = generateScale(color.color, 10).reverse();
-    let scale = generateScale(color.color, 10)
-    for(let i in scale) {
+    let scale = generateScale(color.color, 10);
+    for (let i in scale) {
       newPalette.colors[levels[i]].push({
         name: `${color.name} ${levels[i]}`,
         id: color.name.toLowerCase().replace(/ /g, '-'),
@@ -24,7 +24,7 @@ function generatePalette(starterPalette) {
         rgba: chroma(scale[i])
           .css()
           .replace('rgb', 'rgba')
-          .replace(")", ",1.0)")
+          .replace(')', ',1.0)')
       });
     }
   }

@@ -6,7 +6,6 @@ import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import styles from './styles/PaletteStyles';
 
-
 class SingleColorPalette extends Component {
   constructor(props) {
     super(props);
@@ -19,10 +18,10 @@ class SingleColorPalette extends Component {
     let shades = [];
     let allColors = palette.colors;
 
-    for(let key in allColors) {
+    for (let key in allColors) {
       shades = shades.concat(
         allColors[key].filter(color => color.id === filterColor)
-      )
+      );
     }
     return shades.slice(1);
   }
@@ -40,10 +39,10 @@ class SingleColorPalette extends Component {
         background={color[format]}
         showFullPalette={false}
       />
-    ))
+    ));
     return (
       <div className={classes.Palette}>
-        <Navbar handleChange={this.changeFormat} showSlider={false}/>
+        <Navbar handleChange={this.changeFormat} showSlider={false} />
         <div className={classes.colors}>
           {colorBoxes}
           <div className={classes.goBack}>
@@ -52,9 +51,8 @@ class SingleColorPalette extends Component {
         </div>
         <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
-    )
+    );
   }
 }
-
 
 export default withStyles(styles)(SingleColorPalette);

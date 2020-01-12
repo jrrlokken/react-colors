@@ -3,11 +3,11 @@ const drawerWidth = DRAWER_WIDTH;
 
 const styles = theme => ({
   root: {
-    display: "flex"
+    display: 'flex'
   },
-  
+
   hide: {
-    display: "none"
+    display: 'none'
   },
   drawer: {
     width: drawerWidth,
@@ -19,30 +19,30 @@ const styles = theme => ({
     alignItems: 'center'
   },
   drawerHeader: {
-    display: "flex",
-    alignItems: "center",
+    display: 'flex',
+    alignItems: 'center',
     width: '100%',
-    padding: "0 8px",
+    padding: '0 8px',
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
+    justifyContent: 'flex-end'
   },
   content: {
     flexGrow: 1,
-    height: "calc(100vh - 64px)",
+    height: 'calc(100vh - 64px)',
     padding: 0,
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
     marginLeft: -drawerWidth
   },
   contentShift: {
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
-  }, 
+  },
   container: {
     width: '90%',
     display: 'flex',

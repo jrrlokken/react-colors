@@ -13,6 +13,6 @@ const styles = {
     width: '100%',
     height: '70px'
   }
-}
+};
 
 export default styles;

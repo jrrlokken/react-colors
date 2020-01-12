@@ -16,22 +16,24 @@ export default {
     },
     [sizes.down('lg')]: {
       width: '25%',
-      height: props => (props.showFullPalette ? '20%' : '33.3333%'),
+      height: props => (props.showFullPalette ? '20%' : '33.3333%')
     },
     [sizes.down('md')]: {
       width: '50%',
-      height: props => (props.showFullPalette ? '10%' : '20%'),
+      height: props => (props.showFullPalette ? '10%' : '20%')
     },
     [sizes.down('xs')]: {
       width: '100%',
-      height: props => (props.showFullPalette ? '5%' : '10%'),
+      height: props => (props.showFullPalette ? '5%' : '10%')
     }
   },
   copyText: {
-    color: props => chroma(props.background).luminance() >= 0.7 ? 'black' : 'white'
+    color: props =>
+      chroma(props.background).luminance() >= 0.7 ? 'black' : 'white'
   },
   colorName: {
-    color: props => chroma(props.background).luminance() <= 0.07 ? 'white' : 'black'
+    color: props =>
+      chroma(props.background).luminance() <= 0.07 ? 'white' : 'black'
   },
   seeMore: {
     color: props =>
@@ -127,7 +129,7 @@ export default {
     '& p': {
       fontSize: '2rem',
       fontWeight: '100',
-      textTransform: 'none',
+      textTransform: 'none'
     }
   },
   showMessage: {
@@ -137,4 +139,4 @@ export default {
     transition: 'all 0.4s ease-in-out',
     transitionDelay: '0.4s'
   }
-}
+};

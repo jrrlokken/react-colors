@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 
@@ -14,14 +14,14 @@ class PaletteMetaForm extends Component {
     super(props);
     this.state = {
       stage: 'form',
-      newPaletteName: ""
+      newPaletteName: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.showEmojiPicker = this.showEmojiPicker.bind(this);
     this.savePalette = this.savePalette.bind(this);
   }
   componentDidMount() {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
+    ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
       this.props.palettes.every(
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       )
@@ -57,46 +57,48 @@ class PaletteMetaForm extends Component {
     return (
       <div>
         <Dialog open={this.state.stage === 'emoji'} onClose={hideForm}>
-          <DialogTitle id='form-dialog-title'>Choose a Palette Emoji</DialogTitle>
+          <DialogTitle id="form-dialog-title">
+            Choose a Palette Emoji
+          </DialogTitle>
           <Picker onSelect={this.savePalette} />
         </Dialog>
         <Dialog
           open={this.state.stage === 'form'}
           onClose={this.handleClose}
-          aria-labelledby='form-dialog-title'
+          aria-labelledby="form-dialog-title"
           onClose={hideForm}
         >
-          <DialogTitle id='form-dialog-title'>Choose a Palette Name</DialogTitle>
-          <ValidatorForm
-            onSubmit={this.showEmojiPicker}
-          >
+          <DialogTitle id="form-dialog-title">
+            Choose a Palette Name
+          </DialogTitle>
+          <ValidatorForm onSubmit={this.showEmojiPicker}>
             <DialogContent>
               <DialogContentText>
-                Please enter a name for your beautiful new palette. Make sure it's unique!
+                Please enter a name for your beautiful new palette. Make sure
+                it's unique!
               </DialogContentText>
               <TextValidator
-                label='Palette Name'
+                label="Palette Name"
                 value={newPaletteName}
-                name='newPaletteName'
+                name="newPaletteName"
                 onChange={this.handleChange}
                 fullWidth
-                margin='normal'
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={["Enter Palette Name", "Name already used"]}
+                margin="normal"
+                validators={['required', 'isPaletteNameUnique']}
+                errorMessages={['Enter Palette Name', 'Name already used']}
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={hideForm} color='primary'>
+              <Button onClick={hideForm} color="primary">
                 Cancel
               </Button>
-              <Button variant='contained' color='primary' type='submit'>
+              <Button variant="contained" color="primary" type="submit">
                 Save Palette
               </Button>
             </DialogActions>
           </ValidatorForm>
         </Dialog>
       </div>
-      
     );
   }
 }

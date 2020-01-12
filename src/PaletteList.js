@@ -6,7 +6,6 @@ import PaletteTwoToneIcon from '@material-ui/icons/PaletteTwoTone';
 
 import styles from './styles/PaletteListStyles';
 
-
 class PaletteList extends Component {
   goToPalette(id) {
     this.props.history.push(`/palette/${id}`);
@@ -17,23 +16,21 @@ class PaletteList extends Component {
       <div className={classes.root}>
         <div className={classes.container}>
           <nav className={classes.nav}>
-          <h1>PaletteSwatch!</h1>
-            <Link to='/palette/new'>Create New Palette</Link>
+            <h1>PaletteSwatch!</h1>
+            <Link to="/palette/new">Create New Palette</Link>
           </nav>
           <div className={classes.palettes}>
             {palettes.map(palette => (
-                <MiniPalette
-                  {...palette}
-                  handleClick={() => this.goToPalette(palette.id)}
-                  handleDelete={deletePalette}
-                  key={palette.id}
-                  id={palette.id}
-                />
+              <MiniPalette
+                {...palette}
+                handleClick={() => this.goToPalette(palette.id)}
+                handleDelete={deletePalette}
+                key={palette.id}
+                id={palette.id}
+              />
             ))}
           </div>
         </div>
-        
-        
       </div>
     );
   }

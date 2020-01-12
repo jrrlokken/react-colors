@@ -37,7 +37,7 @@ export default {
       lineHeight: '30px',
       border: 'none',
       cursor: 'pointer',
-      textDecoration: 'none',
+      textDecoration: 'none'
     },
     [sizes.down('lg')]: {
       width: '25%',
@@ -52,4 +52,4 @@ export default {
       height: '10%'
     }
   }
-}
+};

@@ -5,7 +5,7 @@ export default {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    height: '6vh',
+    height: '6vh'
   },
   logo: {
     marginRight: '15px',
@@ -18,7 +18,7 @@ export default {
     alignItems: 'center',
     '& a': {
       textDecoration: 'none',
-      color: 'black',
+      color: 'black'
     },
     [sizes.down('xs')]: {
       display: 'none'
@@ -57,4 +57,4 @@ export default {
     marginLeft: 'auto',
     marginRight: '1rem'
   }
-}
+};

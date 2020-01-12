@@ -1,4 +1,4 @@
-import sizes from './sizes'
+import sizes from './sizes';
 
 export default {
   root: {
@@ -43,4 +43,4 @@ export default {
       gridTemplateColumns: 'repeat(1, 100%)'
     }
   }
-}
+};

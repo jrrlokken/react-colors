@@ -8,7 +8,7 @@ const styles = theme => ({
     display: 'flex'
   },
   appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
@@ -20,7 +20,7 @@ const styles = theme => ({
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
+    transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     })
@@ -35,7 +35,7 @@ const styles = theme => ({
       textDecoration: 'none'
     },
     [sizes.down('xs')]: {
-      marginRight: '0.5rem',
+      marginRight: '0.5rem'
     }
   },
   button: {
@@ -46,7 +46,7 @@ const styles = theme => ({
     }
   },
   hide: {
-    display: "none"
+    display: 'none'
   }
 });
 

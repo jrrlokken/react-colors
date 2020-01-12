@@ -19,7 +19,7 @@ class Palette extends Component {
     this.setState({ format: val });
   }
   render() {
-    const { colors, paletteName, emoji, id, } = this.props.palette;
+    const { colors, paletteName, emoji, id } = this.props.palette;
     const { classes } = this.props;
     const { level, format } = this.state;
     const colorBoxes = colors[level].map(color => (
@@ -40,9 +40,9 @@ class Palette extends Component {
           showSlider
         />
         <div className={classes.colors}>{colorBoxes}</div>
-        <PaletteFooter paletteName={paletteName} emoji={emoji}/>
+        <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
-    )
+    );
   }
 }
 

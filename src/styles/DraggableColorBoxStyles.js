@@ -12,7 +12,7 @@ const styles = {
     textTransform: 'uppercase',
     '&:hover svg': {
       color: 'white',
-      transform: 'scale(1.5)' 
+      transform: 'scale(1.5)'
     },
     [sizes.down('lg')]: {
       width: '25%',
@@ -43,6 +43,6 @@ const styles = {
     color: 'rgba(0,0,0,0.5)',
     transition: 'all 0.3s ease-in-out'
   }
-}
+};
 
 export default styles;
