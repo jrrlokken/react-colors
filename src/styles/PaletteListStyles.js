@@ -47,13 +47,10 @@ export default {
     }
   },
   heading: {
-    fontSize: '2rem'
-    // [sizes.down('sm')]: {
-    //   fontSize: '1rem'
-    // },
-    // [sizes.down('xs')]: {
-    //   fontSize: '0.8rem'
-    // }
+    fontSize: '2rem',
+    [sizes.down('micro')]: {
+      fontSize: '1.5rem'
+    }
   },
   palettes: {
     boxSizing: 'border-box',
