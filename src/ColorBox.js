@@ -12,7 +12,7 @@ class ColorBox extends Component {
   }
   changeCopyState() {
     this.setState({ copied: true }, () => {
-      setTimeout(() => this.setState({ copied: false }), 2500);
+      setTimeout(() => this.setState({ copied: false }), 1500);
     });
   }
   render() {
@@ -35,7 +35,7 @@ class ColorBox extends Component {
             {/* <p>{name}</p> */}
             <p className={classes.copyText}>{background}</p>
           </div>
-          <div className="copy-container">
+          <div className='copy-container'>
             <div className={classes.boxContent}>
               <span className={classes.colorName}>{name}</span>
             </div>

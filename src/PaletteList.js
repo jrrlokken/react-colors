@@ -26,6 +26,7 @@ class PaletteList extends Component {
     this.openDialog = this.openDialog.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.goToPalette = this.goToPalette.bind(this);
   }
   openDialog(id) {
     this.setState({ openDeleteDialog: true, deleteId: id });
@@ -49,14 +50,14 @@ class PaletteList extends Component {
         <div className={classes.container}>
           <nav className={classes.nav}>
             <h1 className={classes.heading}>PaletteSwatch!</h1>
-            <Link to="/palette/new">Create Palette</Link>
+            <Link to='/palette/new'>Create Palette</Link>
           </nav>
           <TransitionGroup className={classes.palettes}>
             {palettes.map(palette => (
-              <CSSTransition key={palette.id} classNames="fade" timeout={500}>
+              <CSSTransition key={palette.id} classNames='fade' timeout={500}>
                 <MiniPalette
                   {...palette}
-                  handleClick={() => this.goToPalette(palette.id)}
+                  goToPalette={this.goToPalette}
                   openDialog={this.openDialog}
                   key={palette.id}
                   id={palette.id}
@@ -67,10 +68,10 @@ class PaletteList extends Component {
         </div>
         <Dialog
           open={openDeleteDialog}
-          aria-labelledby="delete-dialog-title"
+          aria-labelledby='delete-dialog-title'
           onClose={this.closeDialog}
         >
-          <DialogTitle id="delete-dialog-title">Delete Palette?</DialogTitle>
+          <DialogTitle id='delete-dialog-title'>Delete Palette?</DialogTitle>
           <List>
             <ListItem button onClick={this.handleDelete}>
               <ListItemAvatar>
@@ -80,7 +81,7 @@ class PaletteList extends Component {
                   <CheckIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Delete" />
+              <ListItemText primary='Delete' />
             </ListItem>
             <ListItem button onClick={this.closeDialog}>
               <ListItemAvatar>
@@ -88,7 +89,7 @@ class PaletteList extends Component {
                   <ClearIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Cancel" />
+              <ListItemText primary='Cancel' />
             </ListItem>
           </List>
         </Dialog>
