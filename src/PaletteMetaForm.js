@@ -41,6 +41,7 @@ class PaletteMetaForm extends Component {
       emoji: emoji.native
     };
     this.props.handleSubmit(newPalette);
+    this.setState({ stage: '' });
   }
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -57,7 +58,7 @@ class PaletteMetaForm extends Component {
     return (
       <div>
         <Dialog open={this.state.stage === 'emoji'} onClose={hideForm}>
-          <DialogTitle id="form-dialog-title">
+          <DialogTitle id='form-dialog-title'>
             Choose a Palette Emoji
           </DialogTitle>
           <Picker onSelect={this.savePalette} />
@@ -65,10 +66,10 @@ class PaletteMetaForm extends Component {
         <Dialog
           open={this.state.stage === 'form'}
           onClose={this.handleClose}
-          aria-labelledby="form-dialog-title"
+          aria-labelledby='form-dialog-title'
           onClose={hideForm}
         >
-          <DialogTitle id="form-dialog-title">
+          <DialogTitle id='form-dialog-title'>
             Choose a Palette Name
           </DialogTitle>
           <ValidatorForm onSubmit={this.showEmojiPicker}>
@@ -78,21 +79,21 @@ class PaletteMetaForm extends Component {
                 it's unique!
               </DialogContentText>
               <TextValidator
-                label="Palette Name"
+                label='Palette Name'
                 value={newPaletteName}
-                name="newPaletteName"
+                name='newPaletteName'
                 onChange={this.handleChange}
                 fullWidth
-                margin="normal"
+                margin='normal'
                 validators={['required', 'isPaletteNameUnique']}
                 errorMessages={['Enter Palette Name', 'Name already used']}
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={hideForm} color="primary">
+              <Button onClick={hideForm} color='primary'>
                 Cancel
               </Button>
-              <Button variant="contained" color="primary" type="submit">
+              <Button variant='contained' color='primary' type='submit'>
                 Save Palette
               </Button>
             </DialogActions>
