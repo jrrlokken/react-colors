@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PaletteMetaForm from './PaletteMetaForm';
 import classNames from 'classnames';
 import {
   CssBaseline,
@@ -11,8 +10,8 @@ import {
   IconButton,
   withStyles
 } from '@material-ui/core';
-// import PaletteTwoToneIcon from '@material-ui/icons/PaletteTwoTone';
 import LaunchIcon from '@material-ui/icons/Launch';
+import PaletteMetaForm from './PaletteMetaForm';
 import styles from './styles/PaletteFormNavStyles';
 
 class PaletteFormNav extends Component {
@@ -42,47 +41,53 @@ class PaletteFormNav extends Component {
   }
 
   render() {
-    const { classes, open, palettes, handleSubmit } = this.props;
-    const { newPaletteName } = this.state;
+    const {
+      classes,
+      open,
+      palettes,
+      handleSubmit,
+      handleDrawerOpen
+    } = this.props;
+    const { formShowing } = this.state;
 
     return (
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-          position="fixed"
-          color="default"
+          position='fixed'
+          color='default'
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open
           })}
         >
           <Toolbar disableGutters={!open}>
             <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.props.handleDrawerOpen}
+              color='inherit'
+              aria-label='Open drawer'
+              onClick={handleDrawerOpen}
               className={classNames(classes.menuButton, {
                 [classes.hide]: open
               })}
             >
               <LaunchIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography variant='h6' color='inherit' noWrap>
               Create A Color Palette
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-            <Link to="/">
+            <Link to='/'>
               <Button
-                variant="outlined"
-                color="primary"
+                variant='outlined'
+                color='primary'
                 className={classes.button}
               >
                 GO BACK
               </Button>
             </Link>
             <Button
-              variant="contained"
-              color="secondary"
+              variant='contained'
+              color='secondary'
               onClick={this.showForm}
               className={classes.button}
             >
@@ -90,7 +95,7 @@ class PaletteFormNav extends Component {
             </Button>
           </div>
         </AppBar>
-        {this.state.formShowing && (
+        {formShowing && (
           <PaletteMetaForm
             palettes={palettes}
             handleSubmit={handleSubmit}

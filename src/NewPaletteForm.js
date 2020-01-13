@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
+import { arrayMove } from 'react-sortable-hoc';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import PaletteFormNav from './PaletteFormNav';
-import ColorPickerForm from './ColorPickerForm';
 import {
   Button,
   Drawer,
@@ -11,8 +9,10 @@ import {
   IconButton
 } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { withStyles } from '@material-ui/core/styles';
 import DraggableColorList from './DraggableColorList';
-import { arrayMove } from 'react-sortable-hoc';
+import PaletteFormNav from './PaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteFormStyles';
 
 class NewPaletteForm extends Component {
@@ -100,8 +100,8 @@ class NewPaletteForm extends Component {
         />
         <Drawer
           className={classes.drawer}
-          variant="persistent"
-          anchor="left"
+          variant='persistent'
+          anchor='left'
           open={open}
           classes={{
             paper: classes.drawerPaper
@@ -114,21 +114,21 @@ class NewPaletteForm extends Component {
           </div>
           <Divider />
           <div className={classes.container}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant='h4' gutterBottom>
               Design Your Palette
             </Typography>
             <div className={classes.buttons}>
               <Button
-                variant="contained"
-                color="secondary"
+                variant='contained'
+                color='secondary'
                 onClick={this.clearColors}
                 className={classes.button}
               >
                 Clear Palette
               </Button>
               <Button
-                variant="outlined"
-                color="primary"
+                variant='outlined'
+                color='primary'
                 className={classes.button}
                 onClick={this.addRandomColor}
                 disabled={paletteFull}
@@ -153,7 +153,7 @@ class NewPaletteForm extends Component {
           <DraggableColorList
             colors={this.state.colors}
             removeColor={this.removeColor}
-            axis="xy"
+            axis='xy'
             onSortEnd={this.onSortEnd}
             distance={5}
           />
