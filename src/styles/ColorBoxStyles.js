@@ -29,15 +29,21 @@ export default {
   },
   copyText: {
     color: props =>
-      chroma(props.background).luminance() >= 0.7 ? 'black' : 'white'
+      chroma(props.background).luminance() >= 0.5
+        ? 'rgba(0,0,0,0.7)'
+        : 'rgba(255,255,255,0.8)'
   },
   colorName: {
     color: props =>
-      chroma(props.background).luminance() <= 0.07 ? 'white' : 'black'
+      chroma(props.background).luminance() <= 0.25
+        ? 'rgba(255,255,255,0.8)'
+        : 'rgba(0,0,0,0.7)'
   },
   seeMore: {
     color: props =>
-      chroma(props.background).luminance() >= 0.7 ? 'rgba(0,0,0,0.6)' : 'white',
+      chroma(props.background).luminance() >= 0.5
+        ? 'rgba(0,0,0,0.7)'
+        : 'rgba(255,255,255,0.8)',
     background: 'rgba(255, 255, 255, 0.3)',
     position: 'absolute',
     border: 'none',
