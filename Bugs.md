@@ -5,3 +5,4 @@
 - Add color name on COPIED modal
 - Fix animation transition for COPIED modal
 - When we 'Go Back' from a SingleColorPalette to a normal palette page, our 'level' is not preserved, and we are always returned to level=500. I wonder if we can preserve level on back...
+- Drawer Width: for better responsive design on phones, I wonder if setting drawerWidth to 400 UNLESS the viewport width is less than 400px, in which case we would render drawerWidth = vw would work?
