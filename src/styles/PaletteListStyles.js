@@ -8,7 +8,7 @@ export default {
     },
     '.fade-exit-active': {
       opacity: 0,
-      transition: 'opacity 500ms ease-out'
+      transition: 'opacity 300ms ease-out'
     }
   },
   root: {
@@ -28,7 +28,7 @@ export default {
     flexDirection: 'column',
     flexWrap: 'wrap',
     [sizes.down('xl')]: {
-      width: '80%'
+      width: '70%'
     },
     [sizes.down('xs')]: {
       width: '75%'
@@ -43,13 +43,19 @@ export default {
     fontSize: '1.5rem',
     '& a': {
       color: 'white',
-      fontSize: '1rem'
+      fontSize: '1.3rem',
+      [sizes.down('xs')]: {
+        fontSize: '1rem'
+      }
     }
   },
   heading: {
     fontSize: '2rem',
-    [sizes.down('micro')]: {
+    [sizes.down('sm')]: {
       fontSize: '1.5rem'
+    },
+    [sizes.down('xs')]: {
+      fontSize: '1.1rem'
     }
   },
   palettes: {

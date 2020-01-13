@@ -44,13 +44,16 @@ export default {
       height: '13px',
       marginTop: '-3px'
     },
-    [sizes.down('md')]: {
-      width: '150px'
+    [sizes.down('sm')]: {
+      width: '200px'
     }
   },
   sliderContainer: {
     '& span': {
-      paddingLeft: '10px'
+      paddingLeft: '10px',
+      [sizes.down('md')]: {
+        paddingLeft: 0
+      }
     }
   },
   selectContainer: {
