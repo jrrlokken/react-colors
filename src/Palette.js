@@ -40,7 +40,11 @@ class Palette extends Component {
           showSlider
         />
         <div className={classes.colors}>{colorBoxes}</div>
-        <PaletteFooter paletteName={paletteName} emoji={emoji} />
+        <PaletteFooter
+          paletteName={paletteName}
+          emoji={emoji}
+          showFullPalette
+        />
       </div>
     );
   }
