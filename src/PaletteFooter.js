@@ -8,8 +8,13 @@ function PaletteFooter(props) {
   const { paletteName, emoji, classes } = props;
   return (
     <div className={classes.PaletteFooter}>
-      <Link to='/' className={classes.button}>
-        <Button variant='contained' color='secondary' size='small'>
+      <Link to='/'>
+        <Button
+          variant='contained'
+          color='secondary'
+          size='small'
+          className={classes.button}
+        >
           GO BACK
         </Button>
       </Link>
