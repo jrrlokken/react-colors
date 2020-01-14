@@ -27,17 +27,7 @@ class Navbar extends Component {
   render() {
     const { level, changeLevel, showSlider, classes } = this.props;
     const { format } = this.state;
-    const marks = {
-      10: '10',
-      20: '20',
-      30: '30',
-      40: '40',
-      50: '50',
-      60: '60',
-      70: '70',
-      80: '80',
-      90: '90'
-    };
+
     return (
       <header className={classes.Navbar}>
         <div className={classes.logo}>
@@ -52,7 +42,6 @@ class Navbar extends Component {
                 min={100}
                 max={900}
                 step={100}
-                // marks={marks}
                 onAfterChange={changeLevel}
               />
             </div>

@@ -50,10 +50,7 @@ export default {
   },
   sliderContainer: {
     '& span': {
-      paddingLeft: '10px',
-      [sizes.down('md')]: {
-        paddingLeft: 0
-      }
+      paddingLeft: '10px'
     }
   },
   selectContainer: {
