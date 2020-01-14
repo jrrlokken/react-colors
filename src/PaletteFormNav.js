@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import classNames from "classnames";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import {
   CssBaseline,
   AppBar,
@@ -9,16 +9,16 @@ import {
   Typography,
   IconButton,
   withStyles
-} from "@material-ui/core";
-import LaunchIcon from "@material-ui/icons/Launch";
-import PaletteMetaForm from "./PaletteMetaForm";
-import styles from "./styles/PaletteFormNavStyles";
+} from '@material-ui/core';
+import LaunchIcon from '@material-ui/icons/Launch';
+import PaletteMetaForm from './PaletteMetaForm';
+import styles from './styles/PaletteFormNavStyles';
 
 class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newPaletteName: "",
+      newPaletteName: '',
       formShowing: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -54,16 +54,16 @@ class PaletteFormNav extends Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-          position="fixed"
-          color="default"
+          position='fixed'
+          color='default'
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open
           })}
         >
           <Toolbar disableGutters={!open}>
             <IconButton
-              color="inherit"
-              aria-label="Open drawer"
+              color='inherit'
+              aria-label='Open drawer'
               onClick={handleDrawerOpen}
               className={classNames(classes.menuButton, {
                 [classes.hide]: open
@@ -73,26 +73,26 @@ class PaletteFormNav extends Component {
             </IconButton>
             <Typography
               className={classes.heading}
-              variant="h6"
-              color="inherit"
+              variant='h6'
+              color='inherit'
               noWrap
             >
               Create A Color Palette
             </Typography>
           </Toolbar>
           <div className={classes.navBtns}>
-            <Link to="/">
+            <Link to='/'>
               <Button
-                variant="outlined"
-                color="primary"
+                variant='outlined'
+                color='primary'
                 className={classes.button}
               >
                 GO BACK
               </Button>
             </Link>
             <Button
-              variant="contained"
-              color="secondary"
+              variant='contained'
+              color='secondary'
               onClick={this.showForm}
               className={classes.button}
             >

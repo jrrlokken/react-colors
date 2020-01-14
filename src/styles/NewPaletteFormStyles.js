@@ -1,4 +1,4 @@
-import { DRAWER_WIDTH } from "../constants";
+import { DRAWER_WIDTH } from '../constants';
 const drawerWidth = DRAWER_WIDTH;
 let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 let h = Math.max(
@@ -8,11 +8,11 @@ let h = Math.max(
 
 const styles = theme => ({
   root: {
-    display: "flex"
+    display: 'flex'
   },
 
   hide: {
-    display: "none"
+    display: 'none'
   },
   drawer: {
     width: drawerWidth,
@@ -20,49 +20,49 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    display: "flex",
-    alignItems: "center"
+    display: 'flex',
+    alignItems: 'center'
   },
   drawerHeader: {
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    padding: "0 8px",
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    padding: '0 8px',
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
+    justifyContent: 'flex-end'
   },
   content: {
     flexGrow: 1,
-    height: "calc(100vh - 64px)",
+    height: 'calc(100vh - 64px)',
     padding: 0,
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
     marginLeft: -drawerWidth
   },
   contentShift: {
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
   },
   container: {
-    width: "90%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%"
+    width: '90%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%'
   },
   buttons: {
-    display: "flex",
-    justifyContent: "space-between",
-    width: "100%"
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%'
   },
   button: {
-    width: "45%"
+    width: '45%'
   }
 });
 
