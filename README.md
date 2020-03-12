@@ -1,3 +1,3 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# PaletteSwatch is a color palette builder, built with React.
+### PaletteSwatch is a color palette builder, built with React.
